@@ -6,7 +6,7 @@ class BooksController < ApplicationController
     end 
 
     def create 
-        etag = params[:id]
+        etag = params[:etag]
         link= params[:link]
         title= params[:title]
         author = params[:author]
@@ -14,18 +14,19 @@ class BooksController < ApplicationController
         page = params[:page]
         published= params[:published]
 
-        @book = Book.find_or_create_by(etag: etag)
-    
-        # @book = Book.create(etag: etag, link: link, title: title, author: author, img: img, page: page, published: published)
+        if @book = Book.find_by(etag: book_params[:etag])
+        #check to see if book is already in database
+        render json: @book
+        else
+        # Must be a new book, create it
+        @book = Book.create(etag: etag, link: link, title: title, author: author, img: img, page: page, published: published)
+        render json: @book
+        end
 
-        # @book.new_record? render json: @book : render json: Book.find_by(etag: etag)
+        
 
-         
-        # byebug
-   
-        # render json: @book
-        # automatically call function to create a book_user 
-    end 
+
+    end
 
     private 
 
@@ -35,3 +36,14 @@ class BooksController < ApplicationController
 
 end
 
+
+# def create
+#       if @book = Book.find_by(etag: book_params[:etag])
+#         render json: @book
+#       else
+#         # Must be a new book, create it
+#         @book = Book.create(etag: etag, link: link, title: title, author: author, img: img, page: page, published: published)
+#         render json: @book
+#       end
+#     end
+#   end
