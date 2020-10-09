@@ -22,10 +22,6 @@ class BooksController < ApplicationController
         @book = Book.create(etag: etag, link: link, title: title, author: author, img: img, page: page, published: published)
         render json: @book
         end
-
-        
-
-
     end
 
     private 
@@ -37,13 +33,3 @@ class BooksController < ApplicationController
 end
 
 
-# def create
-#       if @book = Book.find_by(etag: book_params[:etag])
-#         render json: @book
-#       else
-#         # Must be a new book, create it
-#         @book = Book.create(etag: etag, link: link, title: title, author: author, img: img, page: page, published: published)
-#         render json: @book
-#       end
-#     end
-#   end
