@@ -21,6 +21,15 @@ def update
     render json: @user 
 end 
 
+def destroy 
+    @user = User.find(params[:id])
+    @user.destroy
+    if (@user.destroy {
+        render json: {message: 'user deleted'}
+    })
+end 
+end 
+
 private
 
 def user_params
