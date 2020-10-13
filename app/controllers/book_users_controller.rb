@@ -26,7 +26,7 @@ class BookUsersController < ApplicationController
 private 
 
 def book_user_params
-    params.require(:book_user).permit(:user_id, :book_id)
+    params.require(:book_user).permit(:user_id, :book_id, :book_title)
 end 
 
 
