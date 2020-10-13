@@ -12,7 +12,7 @@ end
 
 def show
     @user = User.find(params[:id])
-    render json: @user
+    render json: @user, include: [:books]
 end 
 
 def update 
