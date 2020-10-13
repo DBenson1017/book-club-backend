@@ -13,7 +13,6 @@ class BooksController < ApplicationController
         img = params[:img]
         page = params[:page]
         published= params[:published]
-
         if @book = Book.find_by(etag: book_params[:etag])
         #check to see if book is already in database
         render json: @book
@@ -23,6 +22,11 @@ class BooksController < ApplicationController
         render json: @book
         end
     end
+
+    def show
+        @book = Book.find(params[:id])
+        render json: @book, include: [:notes, :reviews]
+    end 
 
     private 
 
