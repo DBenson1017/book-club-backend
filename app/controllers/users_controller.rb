@@ -31,7 +31,7 @@ end
 end 
 
 def login 
-    byebug
+    # byebug
     @user = User.where(username: params[:username])
     render json: @user
 end 
