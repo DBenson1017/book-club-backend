@@ -17,6 +17,7 @@ end
 
 def update 
     @user = User.find(params[:id])
+    # byebug
     @user.update_attributes(user_params)
     render json: @user 
 end 
