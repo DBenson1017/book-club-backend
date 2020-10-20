@@ -30,6 +30,13 @@ def destroy
 end 
 end 
 
+def login 
+    byebug
+    @user = User.where(username: params[:username])
+    render json: @user
+end 
+
+
 private
 
 def user_params
